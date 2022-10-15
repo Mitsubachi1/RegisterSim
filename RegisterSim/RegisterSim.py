@@ -5,9 +5,10 @@ Simulate a register experience, user experience of manually inputting items to s
 
 import csv #to use excel spreadsheets for inventory management
 
-#variables to calculate total
+#variables to store items and calculate total
 subTotal = 0
 total = 0
+items = []
 
 def cart():
     #input item id and qty
@@ -43,6 +44,7 @@ def additem(id):
 
 
               print(qty, x['Item'], "added $"+ str(round(itemTotal,2)))
+              itemInCart(str(qty), x['Item'], str(itemTotal))
               total(itemTotal)
               cart()
               return
@@ -50,6 +52,16 @@ def additem(id):
     #if item not found, warns user that item is not found
     print("Item not found, check the id and try again.")    
     cart()
+
+def itemInCart(qty, Item, Price):
+    #stores a list of items added to cart
+    global items
+    itemDescript = qty + " " + Item + " $" + Price
+    items.append(itemDescript)
+    for x in range(len(items)):
+        print (items[x])
+     
+
         
 def total(itemTotal):
     #gets subtotal
