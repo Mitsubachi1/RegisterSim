@@ -5,35 +5,43 @@ Simulate a register experience, user experience of manually inputting items to s
 
 import csv #to use excel spreadsheets for inventory management
 
-
+#variables to calculate total
 subTotal = 0
 total = 0
 
 def cart():
     #input item id and qty
     id = str(input("Enter item id: "))
-    qty = int(input("Enter quantity: "))
+    #qty = int(input("Enter quantity(): "))
     
     #check for exit, if not continue to add item to cart
-    if id and qty != 0:
-        additem(id,qty)
+    if id != '0':
+        additem(id)
     else:
         checkout()
 
 
 
-def additem(id,qty):
+def additem(id):
     
     #opens file containing store items and applies them to a list(itemPrice)
     with open('items.csv', 'r') as items:
         dictionary = csv.DictReader(items)
         itemPrice = list(dictionary)
-        print(itemPrice)
+        
 
        #checks index for id that matches an item, if found, calculates the price given its quantity and adds it to the subtotal
         for x in itemPrice:
            if x['ID']  == id:
-              itemTotal = float(x.get("Price")) * qty
+              if 0 < int(id) < 100: #checks for item in weightable category
+                  qty = 1
+                  weight = float(input("Please enter weight of item (lbs): "))
+                  itemTotal = float(x.get("Price")) * weight
+              else:
+                  qty = int(input("Enter quantity: "))
+                  itemTotal = float(x.get("Price")) * qty
+
+
               print(qty, x['Item'], "added $"+ str(round(itemTotal,2)))
               total(itemTotal)
               cart()
@@ -44,6 +52,7 @@ def additem(id,qty):
     cart()
         
 def total(itemTotal):
+    #gets subtotal
     global subTotal
     subTotal += itemTotal
     return subTotal
@@ -61,7 +70,7 @@ def checkout():
 def main():
     #entrance point, welcomes user and proceeds to cart
     print("Welcome to Generic Grocery Store")
-    print("Enter item id provided from book (enter 0 for id and qty to checkout)")
+    print("Enter item id provided from book (enter 0 for id to checkout)")
     cart()
     
 
