@@ -42,9 +42,9 @@ def additem(id):
                   qty = int(input("Enter quantity: "))
                   itemTotal = float(x.get("Price")) * qty
 
-
-              print(qty, x['Item'], "added $"+ str(round(itemTotal,2)))
-              itemInCart(str(qty), x['Item'], str(itemTotal))
+                  #disdplays item added and adds to subtotal and list before asking another item
+              print(qty, x['Item'], "added $"+ str("%0.2f" % itemTotal))
+              itemInCart(str(qty), x['Item'], str( "%0.2f" % itemTotal))
               total(itemTotal)
               cart()
               return
@@ -53,16 +53,13 @@ def additem(id):
     print("Item not found, check the id and try again.")    
     cart()
 
+
 def itemInCart(qty, Item, Price):
-    #stores a list of items added to cart
-    global items
+    #stores a list of items added to cart to be printed at checkout using checkout()
     itemDescript = qty + " " + Item + " $" + Price
     items.append(itemDescript)
-    for x in range(len(items)):
-        print (items[x])
-     
+    
 
-        
 def total(itemTotal):
     #gets subtotal
     global subTotal
@@ -72,10 +69,16 @@ def total(itemTotal):
            
 def checkout():
     #takes total and adds the tax rate, proceeds to display total
-    global total
     TAXRATE = .08
-    total = (total(0) * TAXRATE) + total(0)
-    print("Your total is $" +  str("%0.2f" % total))
+    total = (subTotal * TAXRATE) + subTotal
+    tax = subTotal * TAXRATE
+    print("Your cart".center(30,'-'))
+    for x in range(len(items)):
+        print (items[x])
+    print('-' * 30)
+    print("Subtotal: $" + "%0.2f" % subTotal)
+    print("Sales tax: $"+ "%0.2f" % tax)
+    print("Your total is $" + "%0.2f" % total)
         
             
 
