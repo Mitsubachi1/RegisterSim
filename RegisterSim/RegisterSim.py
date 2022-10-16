@@ -34,7 +34,7 @@ def additem(id):
        #checks index for id that matches an item, if found, calculates the price given its quantity and adds it to the subtotal
         for x in itemPrice:
            if x['ID']  == id:
-              if 0 < int(id) < 100: #checks for item in weightable category
+              if 0 < int(id) < 1000: #checks for item in weightable category
                   qty = 1
                   weight = float(input("Please enter weight of item (lbs): "))
                   itemTotal = float(x.get("Price")) * weight
@@ -45,7 +45,7 @@ def additem(id):
                   #disdplays item added and adds to subtotal and list before asking another item
               print(qty, x['Item'], "added $"+ str("%0.2f" % itemTotal))
               itemInCart(str(qty), x['Item'], str( "%0.2f" % itemTotal))
-              total(itemTotal)
+              subtotal(itemTotal)
               cart()
               return
 
@@ -60,7 +60,7 @@ def itemInCart(qty, Item, Price):
     items.append(itemDescript)
     
 
-def total(itemTotal):
+def subtotal(itemTotal):
     #gets subtotal
     global subTotal
     subTotal += itemTotal
@@ -68,7 +68,7 @@ def total(itemTotal):
         
            
 def checkout():
-    #takes total and adds the tax rate, proceeds to display total
+    #takes subtotal and adds the tax rate, proceeds to display total
     TAXRATE = .08
     total = (subTotal * TAXRATE) + subTotal
     tax = subTotal * TAXRATE
