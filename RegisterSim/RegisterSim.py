@@ -4,6 +4,7 @@ Simulate a register experience, user experience of manually inputting items to s
 """
 
 import csv #to use excel spreadsheets for inventory management
+import math
 
 #variables to store items and calculate total
 subTotal = 0
@@ -39,7 +40,8 @@ def additem(id):
                   weight = float(input("Please enter weight of item (lbs): "))
                   itemTotal = float(x.get("Price")) * weight
               else:
-                  qty = int(input("Enter quantity: "))
+                  qty = float(input("Enter quantity: "))
+                  qty = math.floor(qty)
                   itemTotal = float(x.get("Price")) * qty
 
                   #disdplays item added and adds to subtotal and list before asking another item
