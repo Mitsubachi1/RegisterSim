@@ -25,7 +25,6 @@ def cart():
     if id == 0:
         checkout()
     elif id == -1:
-        print(itemlist)
         removelist()
     else:
         additem(str(id))
@@ -82,6 +81,13 @@ def addlist(itemtuple):
 
 def removelist():
     #removes an item from the shopping cart
+
+    print("Remove Items".center(30,'-'))
+    print("Item: ID\n"+ '-' * 30)
+    for x in itemlist:
+        print(x.get('Item') + ":", x.get('ID') )
+ 
+    print('-' * 30)
     removeID = str(input("Enter item id to remove: "))
     for x in itemlist:
   
