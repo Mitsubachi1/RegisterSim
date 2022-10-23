@@ -137,7 +137,7 @@ def checkout():
 def main():
     #entrance point, welcomes user and proceeds to cart
     print("Welcome to Generic Grocery Store")
-    print("Enter item id provided from book (enter 0 for id to checkout)")
+    print("Enter item id provided from book (When finished, enter 0 for id to checkout)")
     cart()
     
 
