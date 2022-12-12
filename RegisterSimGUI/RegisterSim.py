@@ -54,7 +54,7 @@ def additem(id, measurement):
               itemtotal = str("%0.2f" % itemTotal)
               measurement = str(measurement)
               txt = (measurement + " " + x['Item'] + " added $" + itemtotal + '\n')
-
+              print (txt)
     if found == True:
         return txt
     else:

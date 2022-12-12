@@ -22,6 +22,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="breezyGUI.py" />
+    <Compile Include="playsound.py" />
     <Compile Include="RegisterSim.py" />
     <Compile Include="RegisterSimGUI.py" />
   </ItemGroup>
